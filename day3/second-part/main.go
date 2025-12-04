@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 )
 
@@ -13,37 +12,28 @@ func main() {
 			  818181911112111`
 
 	allBanks := strings.Split(input, "\n")
-	stack := [][]int{}
+	var result []string
 	for _, bank := range allBanks {
-		for _, battery := range bank {
-			if len(stack) == 0 {
-				temp, _ := strconv.Atoi(string(battery))
-				stack = append(stack, temp)
-			} else {
-				t, _ := strconv.Atoi(string(battery))
-				if t >= stack[len(stack)-1] {
+		stack := []rune{}
+		max := 12
 
-					if len(stack[:len(stack)-1]) < 12 {
-						currentbat, _ := strconv.Atoi(string(battery))
-						if stack[len(stack)-1] <= currentbat {
-							stack := stack[:len(stack)-1]
-							tm, _ := strconv.Atoi(string(battery))
-							stack = append(stack, tm)
-						} else {
-							tm, _ := strconv.Atoi(string(battery))
-							stack = append(stack, tm)
-						}
+		for i, ch := range bank {
+			remaining := len(bank) - i - 1
 
-					} else {
-						fmt.Println(stack)
-					}
-
-				}
+			for len(stack) > 0 && ch > stack[len(stack)-1] && len(stack)-1+remaining >= max {
+				stack = stack[:len(stack)-1]
 			}
 
+			stack = append(stack, ch)
 		}
+
+		if len(stack) > max {
+			stack = stack[:max]
+		}
+
+		result = append(result, string(stack))
 	}
-	fmt.Println(stack)
+	fmt.Println(result)
 
 	// stack = append(stack, 1, 2, 3, 5)
 	// stack = stack[:len(stack)-1]

@@ -235,7 +235,6 @@ func main() {
 
 	}
 
-	fmt.Println(slices)
 	var greatest []int
 	for _, banks := range slices {
 		temp := banks[0]

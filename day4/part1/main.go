@@ -29,10 +29,13 @@ func main() {
 	}
 
 	fmt.Println("#############################")
-
+	var counter int = 0
 	for i := 0; i < len(wall); i++ {
 		// fmt.Println(string(wall[i]))
 		for j := 0; j < len(wall[i]); j++ {
+			if wall[i][j] == '@' {
+				counter++
+			}
 			fmt.Print(string(wall[i][j]))
 		}
 		fmt.Println()

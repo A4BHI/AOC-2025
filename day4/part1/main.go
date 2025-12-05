@@ -28,4 +28,14 @@ func main() {
 		fmt.Println(string(row))
 	}
 
+	fmt.Println("#############################")
+
+	for i := 0; i < len(wall); i++ {
+		// fmt.Println(string(wall[i]))
+		for j := 0; j < len(wall[i]); j++ {
+			fmt.Print(string(wall[i][j]))
+		}
+		fmt.Println()
+	}
+
 }

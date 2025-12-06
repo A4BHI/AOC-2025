@@ -162,6 +162,7 @@ func main() {
 	var counter int = 0
 	var k int
 	var sum int
+	var s []int
 	for i := 0; i < len(wall); i++ {
 
 		for j := 0; j < len(wall[i]); j++ {
@@ -240,6 +241,12 @@ func main() {
 
 			}
 		}
+		for j := 0; j < len(wall[i]); j++ {
+			if wall[i][j] == 'X' {
+				wall[i][j] = '.'
+			}
+		}
+		s = append(s, sum)
 
 	}
 
@@ -247,6 +254,6 @@ func main() {
 		fmt.Println(string(row))
 	}
 
-	fmt.Println(sum)
+	fmt.Println(s)
 
 }
